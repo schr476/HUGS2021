@@ -32,12 +32,12 @@ class DQN:
         # Get hyper-parameters from json cfg file
         data = []
 
-        self.gamma = 0.95  # discount rate
+        self.gamma = 0.85  # discount rate
         self.epsilon = 1.0  # exploration rate
-        self.epsilon_min =  0.025
+        self.epsilon_min =  0.001
         self.epsilon_decay =  0.995
         self.learning_rate =  0.001
-        self.batch_size =  32
+        self.batch_size =  5
         self.tau =  0.5
         self.warmup_step =  10
         self.save_model = './models/'
@@ -63,9 +63,9 @@ class DQN:
     def _build_model(self):
         # Input: state
         state_input = Input(self.env.observation_space.shape)
-        h1 = Dense(128, activation='relu')(state_input)
-        h2 = Dense(128, activation='relu')(h1)
-        h3 = Dense(128, activation='relu')(h2)
+        h1 = Dense(64, activation='relu')(state_input)
+        h2 = Dense(64, activation='relu')(h1)
+        h3 = Dense(64, activation='relu')(h2)
         # Output: value mapped to action
         output = Dense(self.env.action_space.n, activation='linear')(h3)
         model = Model(inputs=state_input, outputs=output)
@@ -76,9 +76,9 @@ class DQN:
 
     def _build_lstm_model(self):
         model = Sequential()
-        model.add(LSTM(128, return_sequences=True, input_shape=(1, self.env.observation_space.shape[0])))
-        model.add(LSTM(128, return_sequences=True))
-        model.add(LSTM(128))
+        model.add(LSTM(64, return_sequences=True, input_shape=(1, self.env.observation_space.shape[0])))
+        model.add(LSTM(64, return_sequences=True))
+        model.add(LSTM(64))
         model.add(Dense(self.env.action_space.n, ))
         adam = Adam(learning_rate=self.learning_rate, clipnorm=1.0, clipvalue=0.5)
         model.compile(loss=tf.keras.losses.Huber(), optimizer=adam)
@@ -91,9 +91,9 @@ class DQN:
         outputs = []
         for _ in range(nmodel):
             # Input: state
-            h1 = Dense(128, activation='relu')(state_input)
-            h2 = Dense(128, activation='relu')(h1)
-            h3 = Dense(128, activation='relu')(h2)
+            h1 = Dense(64, activation='relu')(state_input)
+            h2 = Dense(64, activation='relu')(h1)
+            h3 = Dense(64, activation='relu')(h2)
             # Output: value mapped to action
             output = Dense(self.env.action_space.n, activation='linear')(h3)
             outputs.append(output)
