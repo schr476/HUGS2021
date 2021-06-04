@@ -63,9 +63,9 @@ class DQN:
     def _build_model(self):
         # Input: state
         state_input = Input(self.env.observation_space.shape)
-        h1 = Dense(64, activation='relu')(state_input)
-        h2 = Dense(64, activation='relu')(h1)
-        h3 = Dense(64, activation='relu')(h2)
+        h1 = Dense(24, activation='relu')(state_input)
+        h2 = Dense(48, activation='relu')(h1)
+        h3 = Dense(24, activation='relu')(h2)
         # Output: value mapped to action
         output = Dense(self.env.action_space.n, activation='linear')(h3)
         model = Model(inputs=state_input, outputs=output)
