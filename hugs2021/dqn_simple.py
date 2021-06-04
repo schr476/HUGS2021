@@ -1,9 +1,9 @@
 import gym
 import numpy as np
 import random
-from keras.models import Sequential
-from keras.layers import Dense, Dropout
-from keras.optimizers import Adam
+from tensorflow.keras.models import Model, Sequential
+from tensorflow.keras.layers import Dense, Input, LSTM
+from tensorflow.keras.optimizers import Adam
 
 from collections import deque
 
