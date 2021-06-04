@@ -19,9 +19,9 @@ pip install -e . --user
 
 ## Directory Organization
 ```
-├── setup.py
-├── hugs2021                           : a folder contains RL steering scripts  
-├── dataprep                          : a folder with code to read and prep data
-├── notebooks                          : a folder with notebooks that can be executed on colab.research.google.com
+├── setup.py        : package setup file
+├── hugs2021        : a folder contains RL steering scripts  
+├── dataprep        : a folder with code to read and prep data
+├── notebooks       : a folder with notebooks that can be executed on colab.research.google.com
           
 ```
