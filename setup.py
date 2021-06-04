@@ -7,8 +7,5 @@ setup(
    author='Malachi Schram',
    author_email='schram@jlab.org',
    packages=['hugsdata'],  #same as name
-      install_requires=['gym','keras','pandas',
-                        'numpy','matplotlib','seaborn',
-                        'sklearn','scipy',
-                        'tqdm','jupyter']  
+   install_requires=['gym','keras','pandas','numpy','matplotlib','seaborn','sklearn','scipy','tqdm','jupyter']  
 )
