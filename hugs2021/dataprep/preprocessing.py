@@ -1,3 +1,4 @@
+import numpy as np 
 def create_dataset(dataset, look_back=1,look_forward=1):
     X, Y = [], []
     offset = look_back+look_forward
