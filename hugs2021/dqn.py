@@ -20,7 +20,7 @@ class DQN:
     def __init__(self, env, arch_type='MLP', nmodels=0):
         self.arch_type = arch_type
         self.env = env
-        self.memory = deque(maxlen=2000)
+        self.memory = deque(maxlen=20000)
         self.avg_reward = 0
         self.target_train_counter = 0
 
@@ -32,14 +32,13 @@ class DQN:
         # Get hyper-parameters from json cfg file
         data = []
 
-        self.gamma = 0.85  # discount rate
+        self.gamma = 0.95  # discount rate
         self.epsilon = 1.0  # exploration rate
         self.epsilon_min =  0.001
         self.epsilon_decay =  0.995
         self.learning_rate =  0.001
-        self.batch_size =  5
-        self.tau =  0.5
-        self.warmup_step =  10
+        self.batch_size =  21
+        self.tau =  1.0
         self.save_model = './models/'
 
         if self.arch_type == 'LSTM':
