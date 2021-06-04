@@ -38,8 +38,8 @@ class DQN:
         self.epsilon_decay =  0.995
         self.learning_rate =  0.001
         self.batch_size =  32
-        self.tau =  0.25
-        self.warmup_step =  1
+        self.tau =  0.5
+        self.warmup_step =  10
         self.save_model = './models/'
 
         if self.arch_type == 'LSTM':
