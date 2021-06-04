@@ -17,7 +17,7 @@ logger.setLevel(logging.ERROR)
 
 
 class DQN:
-    def __init__(self, env, cfg='dqn_setup.json', arch_type='MLP', nmodels=0):
+    def __init__(self, env, arch_type='MLP', nmodels=0):
         self.arch_type = arch_type
         self.env = env
         self.memory = deque(maxlen=2000)
@@ -34,15 +34,15 @@ class DQN:
         with open(cfg) as json_file:
             data = json.load(json_file)
 
-        self.gamma = float(data['gamma']) if float(data['gamma']) else 0.95  # discount rate
-        self.epsilon = float(data['epsilon']) if float(data['epsilon']) else 1.0  # exploration rate
-        self.epsilon_min = float(data['epsilon_min']) if float(data['epsilon_min']) else 0.05
-        self.epsilon_decay = float(data['epsilon_decay']) if float(data['epsilon_decay']) else 0.995
-        self.learning_rate = float(data['learning_rate']) if float(data['learning_rate']) else 0.001
-        self.batch_size = int(data['batch_size']) if int(data['batch_size']) else 32
-        self.tau = float(data['tau']) if float(data['tau']) else 1.0
-        self.warmup_step = float(data['warmup_step']) if float(data['warmup_step']) else 100
-        self.save_model = ''
+        self.gamma = 0.95  # discount rate
+        self.epsilon = 1.0  # exploration rate
+        self.epsilon_min =  0.025
+        self.epsilon_decay =  0.995
+        self.learning_rate =  0.001
+        self.batch_size =  32
+        self.tau =  0.25
+        self.warmup_step =  1
+        self.save_model = './models/'
 
         if self.arch_type == 'LSTM':
             logger.info('Defined Arch Type:{}'.format(self.arch_type))
