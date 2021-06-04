@@ -38,6 +38,7 @@ class DQN:
         self.epsilon_decay =  0.995
         self.learning_rate =  0.001
         self.batch_size =  21
+        self.warmup_step = self.batch_size
         self.tau =  1.0
         self.save_model = './models/'
 
