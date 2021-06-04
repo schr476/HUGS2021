@@ -31,8 +31,6 @@ class DQN:
 
         # Get hyper-parameters from json cfg file
         data = []
-        with open(cfg) as json_file:
-            data = json.load(json_file)
 
         self.gamma = 0.95  # discount rate
         self.epsilon = 1.0  # exploration rate
