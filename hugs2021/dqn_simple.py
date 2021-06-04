@@ -41,7 +41,7 @@ class DQN:
         self.epsilon *= self.epsilon_decay
         self.epsilon = max(self.epsilon_min, self.epsilon)
         if np.random.random() < self.epsilon:
-            return self.env.action_space.sample()
+            return random.randrange(self.env.action_space.n)#self.env.action_space.sample()
         return np.argmax(self.model.predict(state)[0])
 
     def remember(self, state, action, reward, new_state, done):
