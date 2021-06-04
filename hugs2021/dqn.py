@@ -69,7 +69,7 @@ class DQN:
         # Output: value mapped to action
         output = Dense(self.env.action_space.n, activation='linear')(h3)
         model = Model(inputs=state_input, outputs=output)
-        adam = Adam(lr=self.learning_rate, clipnorm=1.0, clipvalue=0.5)
+        adam = Adam(learning_rate=self.learning_rate, clipnorm=1.0, clipvalue=0.5)
         model.compile(loss=tf.keras.losses.Huber(), optimizer=adam)
         model.summary()
         return model
@@ -80,7 +80,7 @@ class DQN:
         model.add(LSTM(128, return_sequences=True))
         model.add(LSTM(128))
         model.add(Dense(self.env.action_space.n, ))
-        adam = Adam(lr=self.learning_rate, clipnorm=1.0, clipvalue=0.5)
+        adam = Adam(learning_rate=self.learning_rate, clipnorm=1.0, clipvalue=0.5)
         model.compile(loss=tf.keras.losses.Huber(), optimizer=adam)
         model.summary()
         return model
@@ -100,7 +100,7 @@ class DQN:
 
         out_avg = tf.keras.layers.Average()(outputs)
         model = tf.keras.models.Model(inputs=[state_input], outputs=out_avg)
-        adam = Adam(lr=self.learning_rate, clipnorm=1.0, clipvalue=0.5)
+        adam = Adam(learning_rate=self.learning_rate, clipnorm=1.0, clipvalue=0.5)
         model.compile(loss=tf.keras.losses.Huber(), optimizer=adam)
         model.summary()
         return model
