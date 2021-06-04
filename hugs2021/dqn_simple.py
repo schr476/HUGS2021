@@ -23,13 +23,18 @@ class DQN:
         self.target_model = self.create_model()
 
     def create_model(self):
-        model   = Sequential()
-        state_shape  = self.env.observation_space.shape
-        model.add(Dense(24, input_dim=state_shape[0], activation="relu"))
-        model.add(Dense(48, activation="relu"))
-        model.add(Dense(24, activation="relu"))
-        model.add(Dense(self.env.action_space.n))
-        model.compile(loss="mean_squared_error", optimizer=Adam(lr=self.learning_rate))
+        # Input: state
+        state_input = Input(self.env.observation_space.shape)
+        #
+        h1 = Dense(24, activation='relu')(state_input)
+        h2 = Dense(48, activation='relu')(h1)
+        h3 = Dense(24, activation='relu')(h2)
+        # Output: value mapped to action
+        output = Dense(self.env.action_space.n)(h3)
+        #
+        model = Model(inputs=state_input, outputs=output)
+        adam = Adam(learning_rate=self.learning_rate, clipnorm=1.0, clipvalue=0.5)
+        model.compile(loss="mean_squared_error", optimizer=adam)        
         return model
 
     def action(self, state):
