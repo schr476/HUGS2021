@@ -17,7 +17,7 @@ logger.setLevel(logging.ERROR)
 
 
 class DQN:
-    def __init__(self, env, cfg='../cfg/dqn_setup.json', arch_type='MLP', nmodels=0):
+    def __init__(self, env, cfg='dqn_setup.json', arch_type='MLP', nmodels=0):
         self.arch_type = arch_type
         self.env = env
         self.memory = deque(maxlen=2000)
