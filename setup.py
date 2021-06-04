@@ -6,6 +6,6 @@ setup(
    description='Toy examples for HUGS2021',
    author='Malachi Schram',
    author_email='schram@jlab.org',
-   packages=['hugs2021'],  #same as name
+   packages=['hugs2021','dataprep'],  #same as name
    install_requires=['gym','keras','pandas','numpy','matplotlib','seaborn','sklearn','scipy','tqdm','jupyter']  
 )
